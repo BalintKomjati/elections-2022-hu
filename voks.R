@@ -39,7 +39,7 @@ voks[,q:=NULL]
 
   colors <- data.table(
     topic=vlinks4$topic %>% unique(),
-    color=grDevices::adjustcolor(c("white",MetBrewer::met.brewer('Signac',12)),
+    color=grDevices::adjustcolor(c("grey",MetBrewer::met.brewer('Signac',12)),
                                  alpha.f = .8)
     )
   
@@ -89,17 +89,16 @@ voks[,q:=NULL]
   nw <- 
   visNetwork(nodes = vnodes,
              edges = vlinks4[topicn == 1],
-             background='black',
-             main='Választás 2022'
+             background='white'
     ) %>%
     visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
     #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
     visLayout(randomSeed = 1) %>% 
     visLegend(addEdges = data.table(
-      color = c('#FFFFFFCC','#FFFFFFCC'), 
-      width = c(1,20),
-      arrows = c('none','none'),
-      label = c("20%",'100%')
+      color = c('#BEBEBECC','#BEBEBECC','#BEBEBECC'), 
+      width = c(1,10,20),
+      arrows = c('none','none','none'),
+      label = c("20%","50%",'100%')
       ))
   
   ##################### minis

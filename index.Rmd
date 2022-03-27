@@ -1,9 +1,14 @@
 ---
-title: "Untitled"
-output: 
+title: "VÁLASZTÁS 2022"
+output:
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    theme: 
+      version: 4
+      bg: "#0b3d91"
+      fg: "white"
+      primary: "#FCC780"
+      base_font: font_google("Space Mono")
+      code_font: font_google("Space Mono")
 ---
 
 ```{r setup, include=FALSE}
@@ -16,21 +21,7 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-
-```
-
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-```
-
-### Chart C
-
-```{r}
-
+source('voks.R')
+nw
 ```
 
