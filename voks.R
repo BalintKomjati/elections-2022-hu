@@ -53,7 +53,7 @@ voks[,q:=NULL]
   )) %>% unique()
   
   vnodes <- vnodes[order(id)]
-  imgs <- paste0(1:6,'.png')
+  imgs <- paste0('img/',1:6,'.png')
   txt<-1
   for (i in 1:6) {
     txt[i] <- RCurl::base64Encode(

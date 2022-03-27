@@ -15,7 +15,7 @@ output:
 library(flexdashboard)
 ```
 
-Column {data-width=650}
+Column {data-width=60%}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -25,3 +25,23 @@ source('voks.R')
 nw
 ```
 
+Column {data-width=40%}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+nw
+```
+
+### Chart C
+
+```{r}
+nw
+```
+
+### Chart C
+
+```{r}
+nw
+```
