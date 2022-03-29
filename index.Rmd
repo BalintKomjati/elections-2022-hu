@@ -1,47 +1,110 @@
 ---
-title: "VÁLASZTÁS 2022"
+title: "VÁLASZTÁS 2022 - Hány százalékban értenek egyet a pártok bizonyos kérdésekben?"
 output:
   flexdashboard::flex_dashboard:
     theme: 
       version: 4
-      bg: "#0b3d91"
-      fg: "white"
-      primary: "#FCC780"
-      base_font: font_google("Space Mono")
-      code_font: font_google("Space Mono")
+      bootswatch: simplex
+    orientation: rows
+    vertical_layout: scroll
 ---
+
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-```
-
-Column {data-width=60%}
------------------------------------------------------------------------
-
-### Chart A
-
-```{r}
 source('voks.R')
-nw
 ```
 
-Column {data-width=40%}
+A vokskabin.hu összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén. Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.
+
+row {data-height=400}
 -----------------------------------------------------------------------
 
-### Chart B
+### Összes téma egyben {.no-padding}
 
 ```{r}
-nw
+nw[[1]]
 ```
 
-### Chart C
+row {data-height=200, .no-padding}
+-----------------------------------------------------------------------
+
+### Belpolitika
 
 ```{r}
-nw
+nw[[2]]
 ```
 
-### Chart C
+### Családpolitika
 
 ```{r}
-nw
+nw[[3]]
 ```
+
+### Demokrácia
+
+```{r}
+nw[[4]]
+```
+
+### Digitalizáció {.no-padding}
+
+```{r}
+nw[[5]]
+```
+
+### Egészségügy {.no-padding}
+
+```{r}
+nw[[6]]
+```
+
+### Esélyegyenloség {.no-padding}
+
+```{r}
+nw[[7]]
+```
+
+row {data-height=200, .no-padding}
+-----------------------------------------------------------------------
+
+### Gazdaságpolitika  
+
+```{r}
+nw[[8]]
+```
+
+### Identitáspolitika
+
+```{r}
+nw[[9]]
+```
+
+### Környezetvédelem
+
+```{r}
+nw[[10]]
+```
+
+
+### Külpolitika
+
+```{r}
+nw[[11]]
+```
+
+### Oktatáspolitika
+
+```{r}
+nw[[12]]
+```
+
+### Szociálpolitika 
+
+```{r}
+nw[[13]]
+```
+
+
+> Az adatok forrása a vokskabin.hu
+

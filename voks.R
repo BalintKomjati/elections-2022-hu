@@ -51,7 +51,7 @@ voks[,q:=NULL]
     vlinks3[,.(id = from, title = from_name)] ,
     vlinks3[,.(id = to  , title =   to_name)]
   )) %>% unique()
-  
+  vnodes[,title:=NULL]
   vnodes <- vnodes[order(id)]
   imgs <- paste0('img/',1:6,'.png')
   txt<-1
@@ -86,10 +86,12 @@ voks[,q:=NULL]
     avoidOverlap = 0,
     damping = 0.4
   )
-  nw <- 
+  
+  nw <- list()
+  nw[[1]] <- 
   visNetwork(nodes = vnodes,
              edges = vlinks4[topicn == 1],
-             background='white'
+             background='black'
     ) %>%
     visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
     #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
@@ -100,8 +102,27 @@ voks[,q:=NULL]
       arrows = c('none','none','none'),
       label = c("20%","50%",'100%')
       ))
+
+  ##################### minis  
   
-  ##################### minis
+  vlinks4[,hidden := F]
+  vlinks4[topicn == 1,hidden:=T]
+  #phys_params$springConstant <- phys_params$springConstant*.7
+
+  
+  for (i in 2:13) {
+    nw[[i]] <- 
+  
+      visNetwork(nodes = vnodes,
+                 edges = vlinks4[topicn %in% c(i,1)],
+                 background='black'
+      ) %>%
+      visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
+      #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
+      visLayout(randomSeed = 1) 
+  
+  }
+
   
   # vlinks4[,length := 95]
   # vlinks4[topicn == 5, length := 200]
