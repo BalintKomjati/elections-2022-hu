@@ -2,109 +2,118 @@
 title: "VÁLASZTÁS 2022 - Hány százalékban értenek egyet a pártok bizonyos kérdésekben?"
 output:
   flexdashboard::flex_dashboard:
-    theme: 
-      version: 4
-      bootswatch: simplex
+    theme: united 
     orientation: rows
     vertical_layout: scroll
 ---
 
+<style>                     
+.navbar {
+  background-color:black;
+  border-color:black;
+}
+
+
+</style>   
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-source('voks.R')
+source('voks.R') 
 ```
-
-A vokskabin.hu összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén. Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.
-
+  
+> A vokskabin.hu összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén. Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.
+  
 row {data-height=400}
 -----------------------------------------------------------------------
 
-### Összes téma egyben {.no-padding}
+### All {.no-padding .no-title}
 
 ```{r}
 nw[[1]]
 ```
 
-row {data-height=200, .no-padding}
+row {data-height=250, .no-padding}
 -----------------------------------------------------------------------
 
-### Belpolitika
+### 2 {.no-title}
 
 ```{r}
 nw[[2]]
 ```
 
-### Családpolitika
+### 3 {.no-title}
 
 ```{r}
 nw[[3]]
 ```
 
-### Demokrácia
+### 4 {.no-title}
 
 ```{r}
 nw[[4]]
 ```
 
-### Digitalizáció {.no-padding}
+### 5 {.no-title}
 
 ```{r}
 nw[[5]]
 ```
 
-### Egészségügy {.no-padding}
+### 6 {.no-title}
 
 ```{r}
 nw[[6]]
 ```
 
-### Esélyegyenloség {.no-padding}
+### 7 {.no-title}
 
 ```{r}
 nw[[7]]
 ```
 
-row {data-height=200, .no-padding}
+
+row {data-height=250, .no-padding}
 -----------------------------------------------------------------------
 
-### Gazdaságpolitika  
+### 8 {.no-title }  
 
 ```{r}
 nw[[8]]
 ```
 
-### Identitáspolitika
+### 9 {.no-title }
 
 ```{r}
 nw[[9]]
 ```
 
-### Környezetvédelem
+### 10 {.no-title }
 
 ```{r}
 nw[[10]]
 ```
 
 
-### Külpolitika
+### 11 {.no-title }
 
 ```{r}
 nw[[11]]
 ```
 
-### Oktatáspolitika
+### 12 {.no-title}
 
 ```{r}
 nw[[12]]
 ```
 
-### Szociálpolitika 
+### 13 {.no-title} 
 
 ```{r}
 nw[[13]]
 ```
 
+row {data-height=50, .no-padding}
+-----------------------------------------------------------------------
 
 > Az adatok forrása a vokskabin.hu
 

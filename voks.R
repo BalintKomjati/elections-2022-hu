@@ -1,7 +1,16 @@
 # TODO
-# kÈrdÈsek kategÛri·i
-# angolul kÈrdÈsek
-# v·laszok buborÈkban
+# k√©rd√©sek hover eset√©n j√∂jjenek fel vagy t√°bl√°ban lent
+# fejl√©c design 
+# kicsik p√°rtok legyen ugyan ott 
+# mobile-on is j√≥ legyen, ne ugorjon nagy m√©reture
+# impressum (bk.hu)
+# vokskabin link
+# legend legyen olvashat√≥
+
+# hol legyen megosztva
+# bk.hu-ra is
+# angol v√°ltozat
+
 
 #dataprep -----
 library(visNetwork)
@@ -32,8 +41,14 @@ voks[,q:=NULL]
 
   vlinks4[,topicn := as.numeric(as.factor(topic))]
   vlinks4[,smooth:=T]
-  #[,shadow:=T]
-  vlinks4[,width := as.character(width / 40)]
+  
+  vlinks4 <- voks[,.(qn=.N),topic][vlinks4, on = 'topic']
+  vlinks4[topic == 'all',qn:=40]
+  vlinks4[,width := as.character(width / qn)]
+  vlinks4[,value := NULL]
+  vlinks4[,agreement := as.numeric(width)]
+  vlinks4[,width := agreement^4*40]
+  #vlinks4[,value := NULL]
   # vlinks4[,font.color :="blue"] 
   # vlinks4[,font.size  := 40] 
 
@@ -51,6 +66,7 @@ voks[,q:=NULL]
     vlinks3[,.(id = from, title = from_name)] ,
     vlinks3[,.(id = to  , title =   to_name)]
   )) %>% unique()
+  vnodes_names <- vnodes[,.(id,title)][order(id)]
   vnodes[,title:=NULL]
   vnodes <- vnodes[order(id)]
   imgs <- paste0('img/',1:6,'.png')
@@ -87,15 +103,22 @@ voks[,q:=NULL]
     damping = 0.4
   )
   
+  topics <- vlinks4[,.(topic, topicn)][order(topicn)] %>% unique()
+  topics[topicn == 1, topic := "Minden tema"]
+  
   nw <- list()
   nw[[1]] <- 
   visNetwork(nodes = vnodes,
              edges = vlinks4[topicn == 1],
-             background='black'
+             background='black',
+             main = list(text = topics[1,topic],
+                         style = 'color:white;font-size:20px;text-align:center')
     ) %>%
     visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
     #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
     visLayout(randomSeed = 1) %>% 
+    visInteraction(dragView = FALSE,
+                   zoomView = FALSE) %>%
     visLegend(addEdges = data.table(
       color = c('#BEBEBECC','#BEBEBECC','#BEBEBECC'), 
       width = c(1,10,20),
@@ -104,6 +127,9 @@ voks[,q:=NULL]
       ))
 
   ##################### minis  
+  
+  vnodes[,x:=c(200,100,200,400,500,400)]
+  vnodes[,y:=c(100,300,500,500,300,100)]
   
   vlinks4[,hidden := F]
   vlinks4[topicn == 1,hidden:=T]
@@ -114,10 +140,14 @@ voks[,q:=NULL]
     nw[[i]] <- 
   
       visNetwork(nodes = vnodes,
-                 edges = vlinks4[topicn %in% c(i,1)],
-                 background='black'
+                 edges = vlinks4[topicn %in% c(i)],
+                 background='black',
+                 main = list(text = topics[i,topic],
+                             style = 'color:white;font-size:15px;text-align:center')
       ) %>%
-      visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
+      visPhysics(enabled = FALSE) %>%
+      visInteraction(dragView = FALSE,
+                     zoomView = FALSE) %>%
       #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
       visLayout(randomSeed = 1) 
   
@@ -130,7 +160,7 @@ voks[,q:=NULL]
   # visNetwork(nodes = vnodes,
   #            edges = vlinks4[topicn %in% c(5,6)],
   #            background='black',
-  #            main='V·laszt·s 2022'
+  #            main='V√°laszt√°s 2022'
   # ) %>%
   #   visPhysics(solver = "forceAtlas2Based" ,forceAtlas2Based = phys_params) %>%
   #   #visEdges(shadow = F, shadow = list(color = 'grey')) %>% 
