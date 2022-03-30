@@ -1,7 +1,6 @@
 # TODO
 # bk.hu add
 # eng version
-# readme
 
 
 #dataprep -----------
