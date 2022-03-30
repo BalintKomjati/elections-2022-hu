@@ -1,5 +1,5 @@
 ---
-title: "VÁLASZTÁS 2022 - Hány százalékban értenek egyet a pártok bizonyos kérdésekben?"
+title: "Mekkora az egyetértés a pártok között?"
 output:
   flexdashboard::flex_dashboard:
     theme: united 
@@ -12,8 +12,6 @@ output:
   background-color:black;
   border-color:black;
 }
-
-
 </style>   
 
 ```{r setup, include=FALSE}
@@ -21,7 +19,9 @@ library(flexdashboard)
 source('voks.R') 
 ```
   
-> A vokskabin.hu összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén. Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.
+> A [vokskabin.hu](https://www.vokskabin.hu/) összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén.  
+> Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.  
+> A részletes adatokat táblázatosan megtalálod az oldal alján (csak desktop módban)  
   
 row {data-height=400}
 -----------------------------------------------------------------------
@@ -112,8 +112,26 @@ nw[[12]]
 nw[[13]]
 ```
 
+row 
+-----------------------------------------------------------------------
+
+### {.no-title .no-mobile}
+
+```{r}
+DT::datatable(voksDT,
+              fillContainer = T,
+              filter = 'top',
+              options = list(
+                scrollY=F,
+                dom = 't',
+                pageLength=5)
+              )
+
+```
+
 row {data-height=50, .no-padding}
 -----------------------------------------------------------------------
 
-> Az adatok forrása a vokskabin.hu
-
+> Az adatok forrása: [vokskabin.hu](https://www.vokskabin.hu/)  
+> A vizualizációt készítette: [Komjáti Bálint](https://www.balint-komjati.hu/)  
+>  

@@ -1,27 +1,33 @@
 # TODO
 # kérdések hover esetén jöjjenek fel vagy táblában lent
-# fejléc design 
-# kicsik pártok legyen ugyan ott 
-# mobile-on is jó legyen, ne ugorjon nagy méreture
-# impressum (bk.hu)
-# vokskabin link
-# legend legyen olvasható
+# source kód kivesz
 
 # hol legyen megosztva
 # bk.hu-ra is
 # angol változat
+# mobile-on is jó legyen, ne ugorjon nagy méreture
+# kód kikukáz, readme
 
 
 #dataprep -----
 library(visNetwork)
 library(data.table)
+library(DT)
 setwd("E:/Mega Sync/R/elections-2022-hu")
 voks <- readxl::read_xlsx('voks.xlsx', sheet = 2) %>% data.table()
-q <- voks$q
-voks[,q:=NULL]
+#qqq <- voks[,.(q,topic)]
+voksDT <- copy(voks)
+voksDT[,q_id:=NULL]
+voks[,3] <- NULL
+setnames(voks, colnames(voks)[2], 'topic')
+#voks[,q:=NULL]
+#library(dplyr)
+#qqq <- qqq %>% group_by(topic) %>% summarise(title = paste(q, collapse = "\n")) %>% data.table()
 
 #links -------------------
   vlinks <- melt(voks, id.vars = c('q_id','topic'))
+
+
   
   vlinks2 <- vlinks[vlinks, on = c('q_id','topic'), allow.cartesian = TRUE][
     value == i.value & variable != i.variable][
@@ -59,7 +65,7 @@ voks[,q:=NULL]
     )
   
   vlinks4 <- colors[vlinks4,on="topic"]
-  #vlinks4[,color := network::as.color(topic, 0.5)]
+  #vlinks4 <- qqq[vlinks4, on = 'topic']
 
 #nodes ---------------------
   vnodes <- rbindlist(list(
@@ -120,16 +126,16 @@ voks[,q:=NULL]
     visInteraction(dragView = FALSE,
                    zoomView = FALSE) %>%
     visLegend(addEdges = data.table(
-      color = c('#BEBEBECC','#BEBEBECC','#BEBEBECC'), 
+      color = c('white','white','white'), 
       width = c(1,10,20),
       arrows = c('none','none','none'),
       label = c("20%","50%",'100%')
-      ))
+      ), zoom = FALSE)
 
   ##################### minis  
   
-  vnodes[,x:=c(200,100,200,400,500,400)]
-  vnodes[,y:=c(100,300,500,500,300,100)]
+  vnodes[,x:=c(200,400,400,200,500,100)-70]
+  vnodes[,y:=c(100,100,500,500,300,300)]
   
   vlinks4[,hidden := F]
   vlinks4[topicn == 1,hidden:=T]
