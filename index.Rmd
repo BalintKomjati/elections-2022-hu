@@ -21,7 +21,8 @@ source('voks.R')
   
 > A [vokskabin.hu](https://www.vokskabin.hu/) összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén.  
 > Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.  
-> A részletes adatokat táblázatosan megtalálod az oldal alján (csak desktop módban)  
+> A részletes adatokat táblázatosan megtalálod az oldal alján 
+(csak desktop módban, ami az ajánlott megjelenítési módja az oldalnak)  
   
 row {data-height=400}
 -----------------------------------------------------------------------
