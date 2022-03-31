@@ -2,6 +2,6 @@
 
 [Click here to view the visualisation](https://balintkomjati.github.io/elections-2022-hu/)  
 
-![](https://raw.github.com/balintkomjati/elections-2022-hu/master/img/CaptureWide.PNG)  
+![](https://raw.github.com/balintkomjati/elections-2022-hu/master/img/widgets_wide.PNG)  
 
 I will add an English version soon.  
