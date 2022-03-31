@@ -124,7 +124,7 @@ DT::datatable(voksDT,
               filter = 'top',
               options = list(
                 scrollY=F,
-                dom = 't',
+                dom = 'tp',
                 pageLength=5)
               )
 
