@@ -1,8 +1,3 @@
-# TODO
-# bk.hu add
-# eng version
-
-
 #dataprep -----------
 
   library(visNetwork)
