@@ -19,7 +19,7 @@ library(flexdashboard)
 source('voks.R') 
 ```
   
-> A [vokskabin.hu](https://www.vokskabin.hu/) összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén.  
+> A [vokskabin.hu](https://www.vokskabin.hu/) összegyűjtötte a pártok álláspontját 40 fontos kérdés mentén a 2022-es parlamenti választások előtt.  
 > Az alábbi vizualizáció azt mutatja be témákra bontva, hogy milyen arányban van egyetértés közöttük.  
 > A részletes adatokat táblázatosan megtalálod az oldal alján 
 (csak desktopon, ami az ajánlott megjelenítési módja az oldalnak)  
